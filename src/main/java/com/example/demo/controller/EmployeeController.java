@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.Employee;
-import com.example.demo.domain.model.UserDeleteBindingModel;
+import com.example.demo.domain.model.EmployeeDeleteBindingModel;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
@@ -44,7 +44,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/delete")
-    public Employee edit(@RequestBody UserDeleteBindingModel bindingModel){
+    public Employee edit(@RequestBody EmployeeDeleteBindingModel bindingModel){
         return  this.employeeService.delete(bindingModel.getId());
     }
 

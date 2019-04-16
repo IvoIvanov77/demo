@@ -20,15 +20,7 @@ public class User extends BaseEntity implements UserDetails {
 
 
     @Override
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
+    @Column(nullable = false, unique = true)
     public String getUsername() {
         return username;
     }
@@ -37,6 +29,17 @@ public class User extends BaseEntity implements UserDetails {
         this.username = username;
     }
 
+    @Override
+    @Column(nullable = false)
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Column(nullable = false, unique = true)
     public String getEmail() {
         return email;
     }
@@ -58,31 +61,13 @@ public class User extends BaseEntity implements UserDetails {
         this.authorities = authorities;
     }
 
-
+    //Transient does not work?
 
     @Transient
     @Override
     public boolean isAccountNonExpired() {
         return false;
     }
-
-    public void setAccountNonExpired(boolean accountNonExpired) {
-
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocke) {
-
-    }
-
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-
-    }
-
-    public void setEnabled(boolean enabled) {
-
-    }
-
-
 
     @Transient
     @Override
@@ -100,6 +85,22 @@ public class User extends BaseEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocke) {
+
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+
+    }
+
+    public void setEnabled(boolean enabled) {
+
     }
 
 
