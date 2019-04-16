@@ -7,13 +7,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({Throwable.class})
     @ResponseBody
-    public String handleException(Throwable e) {
+    public String handleException(Throwable throwable) {
 
-        Throwable throwable = e;
 
-        while (throwable.getCause() != null) {
-            throwable = throwable.getCause();
-        }
 
         return throwable.getMessage();
     }

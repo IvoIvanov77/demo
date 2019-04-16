@@ -3,11 +3,13 @@ package com.example.demo.service;
 import com.example.demo.controller.EmployeeController;
 import com.example.demo.domain.Employee;
 import com.example.demo.repository.EmployeeRepository;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.stereotype.Service;
 
+import java.net.PortUnreachableException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -30,10 +32,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Resource<Employee> getById(Long id){
-        Employee employee = this.employeeRepository
-                .findById(id).orElseThrow(() -> new NoSuchElementException(EMPLOYEE_NOT_FOUND));
-        return new Resource<>(employee, linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(),
+    public Resource<Employee> get(Long id){
+        return new Resource<>(this.getById(id), linkTo(methodOn(EmployeeController.class).one(id)).withSelfRel(),
                 linkTo(methodOn(EmployeeController.class).all()).withRel("employees"));
     }
 
@@ -49,4 +49,32 @@ public class EmployeeServiceImpl implements EmployeeService{
         return new Resources<>(employees,
                 linkTo(methodOn(EmployeeController.class).all()).withSelfRel());
     }
+
+    @Override
+    public Employee createEmployee(Employee employee){
+        return this.employeeRepository.save(employee);
+    }
+
+    @Override
+    public Employee edit(Employee employee){
+        Employee employeeToEdit = this.getById(employee.getId());
+
+        employeeToEdit.setName(employee.getName());
+        employeeToEdit.setRole(employee.getRole());
+        return this.employeeRepository.save(employeeToEdit);
+    }
+
+    @Override
+    public Employee delete(Long id){
+        Employee employeeToDelete = this.getById(id);
+        this.employeeRepository.delete(this.getById(id));
+        return employeeToDelete;
+    }
+
+    private Employee getById(Long id){
+        return this.employeeRepository
+                .findById(id).orElseThrow(() -> new NoSuchElementException(EMPLOYEE_NOT_FOUND));
+    }
+
+
 }

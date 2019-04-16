@@ -9,8 +9,14 @@ import java.util.List;
 public interface EmployeeService {
 
 
-    Resource<Employee> getById(Long id);
+    Resource<Employee> get(Long id);
 
 
     Resources<Resource<Employee>> getAll();
+
+    Employee createEmployee(Employee employee);
+
+    Employee edit(Employee employee);
+
+    Employee delete(Long id);
 }
