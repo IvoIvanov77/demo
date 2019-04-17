@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.web.controller;
 
-import com.example.demo.domain.Employee;
+import com.example.demo.domain.entities.Employee;
 import com.example.demo.domain.model.EmployeeDeleteBindingModel;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,8 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public Employee create(@RequestBody Employee employee){
+
+        String debug ="";
         return  this.employeeService.createEmployee(employee);
     }
 

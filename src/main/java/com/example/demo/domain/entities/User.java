@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.domain.entities;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -66,25 +66,25 @@ public class User extends BaseEntity implements UserDetails {
     @Transient
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Transient
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Transient
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Transient
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setAccountNonExpired(boolean accountNonExpired) {

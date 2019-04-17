@@ -1,10 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.Employee;
+import com.example.demo.domain.entities.Employee;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
-
-import java.util.List;
 
 public interface EmployeeService {
 

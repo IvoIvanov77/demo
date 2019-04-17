@@ -1,7 +1,7 @@
 package com.example.demo.configuration;
 
-import com.example.demo.domain.Employee;
-import com.example.demo.domain.UserRole;
+import com.example.demo.domain.entities.Employee;
+import com.example.demo.domain.entities.UserRole;
 import com.example.demo.domain.enums.Role;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.RoleRepository;

@@ -1,4 +1,4 @@
-package com.example.demo.configuration;
+package com.example.demo.configuration.component.unnecessary;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

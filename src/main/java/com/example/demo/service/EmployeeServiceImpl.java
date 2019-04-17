@@ -1,15 +1,13 @@
 package com.example.demo.service;
 
-import com.example.demo.controller.EmployeeController;
-import com.example.demo.domain.Employee;
+import com.example.demo.web.controller.EmployeeController;
+import com.example.demo.domain.entities.Employee;
 import com.example.demo.repository.EmployeeRepository;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
 import org.springframework.stereotype.Service;
 
-import java.net.PortUnreachableException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;

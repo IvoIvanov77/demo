@@ -1,4 +1,4 @@
-package com.example.demo.configuration;
+package com.example.demo.configuration.component.unnecessary;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
