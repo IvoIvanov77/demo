@@ -1,6 +1,6 @@
 package com.example.demo.domain.model;
 
-public class UserRegisterBindingModel {
+public class UserRegisterRequestModel {
 
     private String username;
 

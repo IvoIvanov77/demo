@@ -3,7 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.entities.User;
 import com.example.demo.domain.entities.UserRole;
 import com.example.demo.domain.enums.Role;
-import com.example.demo.domain.model.UserRegisterBindingModel;
+import com.example.demo.domain.model.UserRegisterRequestModel;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean register(UserRegisterBindingModel bindingModel){
+    public boolean register(UserRegisterRequestModel bindingModel){
         if(!bindingModel.getPassword().equals(bindingModel.getConfirmPassword())){
             throw new IllegalArgumentException("Password and confirm password does not match");
         }
