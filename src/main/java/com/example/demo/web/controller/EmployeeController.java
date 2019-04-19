@@ -6,6 +6,7 @@ import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +33,7 @@ public class EmployeeController {
         return  this.employeeService.get(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
     public Employee create(@RequestBody Employee employee){
 

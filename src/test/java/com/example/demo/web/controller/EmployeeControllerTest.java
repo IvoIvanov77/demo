@@ -71,7 +71,7 @@ public class EmployeeControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .param("name", "ivo")
                 .param("role", "user"))
-                .andExpect(status().is(200));
+                .andExpect(status().isOk());
     }
 
     @Test
