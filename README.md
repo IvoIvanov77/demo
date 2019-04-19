@@ -187,3 +187,10 @@ Next registerd users takes only "ROLE_USER"
     "path": "/employees/delete"
 }
 ```
+## Testing:
+#### Unit tests: 
+Test query search query meyhod in EmployeeRepository - [EmployeeRepositoryUnitTests](https://duckduckgo.com)
+
+#### Integration tests:
+EmployeeController - 
+UserController - 
