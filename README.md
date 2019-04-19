@@ -121,22 +121,69 @@ Next registerd users takes only "ROLE_USER"
 ``` 
 #### Admin can perform all CRUD opretions:
 6. Create new employee:
-- URL -http://localhost:8080/employees/search?name=A&role=Z&minSalary=100&maxSalary=600
-- request body: empty
+- URL -http://localhost:8080/employees/create
+- request body: 
+```javascript
+{
+	"name":"employeeName",
+	"role":"employeeRole",
+	"salary":"1000"
+}
+```
 - response body: 
 ```javascript
-[
-    {
-        "id": 4,
-        "name": "ACD",
-        "role": "ZDD",
-        "salary": 300
-    },
-    {
-        "id": 1,
-        "name": "ABC",
-        "role": "ZZZ",
-        "salary": 100
-    }
-]
-``` 
+{
+    "id": 7,
+    "name": "employeeName",
+    "role": "employeeRole",
+    "salary": 1000
+}
+```
+7. Edit existing employee:
+- URL -http://localhost:8080/employees/edit
+- request body: 
+```javascript
+{
+	"id":7,
+	"name":"editedName",
+	"role":"editedRole",
+	"salary":2000
+}
+```
+- response body: 
+```javascript
+{
+	"id":7,
+	"name":"editedName",
+	"role":"editedRole",
+	"salary":2000
+}
+```
+8. Delete existing employee:
+- URL -http://localhost:8080/employees/delete
+- request body: 
+```javascript
+{
+	"id":7
+}
+```
+- response body: 
+```javascript
+{
+	"id":7,
+	"name":"editedName",
+	"role":"editedRole",
+	"salary":2000
+}
+```
+9. Unauthorize request:
+- response body: 
+```javascript
+{
+    "timestamp": "2019-04-19T13:07:07.316+0000",
+    "status": 403,
+    "error": "Forbidden",
+    "message": "Access Denied",
+    "path": "/employees/delete"
+}
+```
