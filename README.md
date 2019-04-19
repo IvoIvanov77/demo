@@ -1,5 +1,5 @@
 # demo
-Simple spring RESTful Web Service
+Simple Spring boot RESTful Web Service
 
 ## Project features list:
 1. Register user:
