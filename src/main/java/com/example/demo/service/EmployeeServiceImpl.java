@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.web.controller.EmployeeController;
 import com.example.demo.domain.entities.Employee;
 import com.example.demo.repository.EmployeeRepository;
@@ -71,7 +72,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     private Employee getById(Long id){
         return this.employeeRepository
-                .findById(id).orElseThrow(() -> new NoSuchElementException(EMPLOYEE_NOT_FOUND));
+                .findById(id).orElseThrow(() -> new ResourceNotFoundException(EMPLOYEE_NOT_FOUND));
     }
 
 

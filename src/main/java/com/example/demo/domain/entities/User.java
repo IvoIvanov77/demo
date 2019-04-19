@@ -3,7 +3,6 @@ package com.example.demo.domain.entities;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.beans.Transient;
 import java.util.Set;
 
 @Entity
@@ -61,48 +60,29 @@ public class User extends BaseEntity implements UserDetails {
         this.authorities = authorities;
     }
 
-    //Transient does not work?
-
-    @Transient
     @Override
+    @Transient
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Transient
+
     @Override
+    @Transient
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Transient
     @Override
+    @Transient
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Transient
     @Override
+    @Transient
     public boolean isEnabled() {
         return true;
     }
-
-    public void setAccountNonExpired(boolean accountNonExpired) {
-
-    }
-
-    public void setAccountNonLocked(boolean accountNonLocke) {
-
-    }
-
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-
-    }
-
-    public void setEnabled(boolean enabled) {
-
-    }
-
-
 
 }

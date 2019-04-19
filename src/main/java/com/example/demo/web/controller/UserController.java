@@ -2,7 +2,7 @@ package com.example.demo.web.controller;
 
 import com.example.demo.configuration.component.jwt.JwtTokenProvider;
 import com.example.demo.domain.model.AuthenticationRequestModel;
-import com.example.demo.domain.model.UserRegisterBindingModel;
+import com.example.demo.domain.model.UserRegisterRequestModel;
 import com.example.demo.domain.model.UserViewModel;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public UserViewModel registerUser(@RequestBody UserRegisterBindingModel bindingModel){
+    public UserViewModel registerUser(@RequestBody UserRegisterRequestModel bindingModel){
         if(bindingModel == null || !this.userService.register(bindingModel)){
             throw new IllegalArgumentException("Something went wrong.....");
         }
