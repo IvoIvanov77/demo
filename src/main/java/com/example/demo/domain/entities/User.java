@@ -7,7 +7,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity implements UserDetails {
+public class User extends BaseEntity implements UserDetails
+{
 
     private String username;
 
@@ -20,30 +21,36 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     @Column(nullable = false, unique = true)
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username)
+    {
         this.username = username;
     }
 
     @Override
     @Column(nullable = false)
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password)
+    {
         this.password = password;
     }
 
     @Column(nullable = false, unique = true)
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         this.email = email;
     }
 
@@ -52,36 +59,42 @@ public class User extends BaseEntity implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
-    public Set<UserRole> getAuthorities() {
+    public Set<UserRole> getAuthorities()
+    {
         return this.authorities;
     }
 
-    public void setAuthorities(Set<UserRole> authorities) {
+    public void setAuthorities(Set<UserRole> authorities)
+    {
         this.authorities = authorities;
     }
 
     @Override
     @Transient
-    public boolean isAccountNonExpired() {
+    public boolean isAccountNonExpired()
+    {
         return true;
     }
 
 
     @Override
     @Transient
-    public boolean isAccountNonLocked() {
+    public boolean isAccountNonLocked()
+    {
         return true;
     }
 
     @Override
     @Transient
-    public boolean isCredentialsNonExpired() {
+    public boolean isCredentialsNonExpired()
+    {
         return true;
     }
 
     @Override
     @Transient
-    public boolean isEnabled() {
+    public boolean isEnabled()
+    {
         return true;
     }
 

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.constants.ErrorMessages;
 import com.example.demo.domain.entities.User;
 import com.example.demo.domain.entities.UserRole;
 import com.example.demo.domain.enums.Role;
@@ -15,46 +16,75 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService
+{
 
-    public static final String USER_NOT_FOUND_ERROR_MESSAGE = "User not found.";
+
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder)
+    {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public User loadUserByUsername(String username) throws UsernameNotFoundException {
+    public User loadUserByUsername(String username) throws UsernameNotFoundException
+    {
         return this.userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND_ERROR_MESSAGE)) ;
+                .orElseThrow(() -> new UsernameNotFoundException(ErrorMessages.USER_NOT_FOUND_ERROR_MESSAGE));
     }
 
     @Override
-    public boolean register(UserRegisterRequestModel bindingModel){
-        if(!bindingModel.getPassword().equals(bindingModel.getConfirmPassword())){
-            throw new IllegalArgumentException("Password and confirm password does not match");
+    public boolean register(UserRegisterRequestModel bindingModel)
+    {
+        if (!bindingModel.getPassword().equals(bindingModel.getConfirmPassword()))
+        {
+            throw new IllegalArgumentException(ErrorMessages.PASSWORDS_DOES_NOT_MATCH_ERROR_MESSAGE);
         }
         /// TODO: 4/16/19 ModelMapper
         User user = new User();
         user.setUsername(bindingModel.getUsername());
         user.setPassword(this.passwordEncoder.encode(bindingModel.getPassword()));
         user.setEmail(bindingModel.getEmail());
-        Set<UserRole> authorities = new HashSet<>();
-        authorities.add(this.roleRepository.findByAuthority(Role.ROLE_ADMIN.name()).orElse(null));
-        user.setAuthorities(authorities);
+        user.setAuthorities(this.getRolesForRegistration());
 
-        try {
+        try
+        {
             this.userRepository.save(user);
-        }catch (Exception e){
+        } catch (Exception e)
+        {
             e.printStackTrace();
             return false;
         }
         return true;
     }
+
+
+    private Set<UserRole> setUserRoles(Role role)
+    {
+        Set<UserRole> roles = new HashSet<>();
+        for (Role r : Role.values()) {
+            UserRole roleToAdd = this.roleRepository.findByAuthority(r.name()).orElse(null);
+            roles.add(roleToAdd);
+            if(r.equals(role)){
+                break;
+            }
+        }
+        return roles;
+    }
+
+    private Set<UserRole> getRolesForRegistration()
+    {
+        if (this.userRepository.count() == 0)
+        {
+            return this.setUserRoles(Role.ROLE_ADMIN);
+        }
+        return this.setUserRoles(Role.ROLE_USER);
+    }
+
 }

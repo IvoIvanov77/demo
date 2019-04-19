@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -31,12 +30,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-public class EmployeeControllerTest {
+public class EmployeeControllerIntegrationTests
+{
 
-    public static final String EMPLOYEE_NAME = "ivaylo";
-    public static final String EMPLOYEE_ROLE = "junior";
-    public static final String EDITED_NAME = "editedName";
-    public static final String EDITED_ROLE = "editedRole";
+    private static final String EMPLOYEE_NAME = "ivaylo";
+    private static final String EMPLOYEE_ROLE = "junior";
+    private static final String EDITED_NAME = "editedName";
+    private static final String EDITED_ROLE = "editedRole";
     @Autowired
     private MockMvc mockMvc;
 

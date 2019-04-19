@@ -1,6 +1,7 @@
 package com.example.demo.domain.model;
 
-public class UserRegisterRequestModel {
+public class UserRegisterRequestModel
+{
 
     private String username;
 
@@ -9,38 +10,46 @@ public class UserRegisterRequestModel {
     private String password;
 
     private String confirmPassword;
-    
+
     //// TODO: 4/16/19 add validation 
 
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username)
+    {
         this.username = username;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         this.email = email;
     }
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password)
+    {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
+    public String getConfirmPassword()
+    {
         return confirmPassword;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
+    public void setConfirmPassword(String confirmPassword)
+    {
         this.confirmPassword = confirmPassword;
     }
 }

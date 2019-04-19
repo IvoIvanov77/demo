@@ -1,14 +1,17 @@
 package com.example.demo.domain.model;
 
-public class EmployeeDeleteBindingModel {
+public class EmployeeDeleteBindingModel
+{
 
     private Long id;
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 }

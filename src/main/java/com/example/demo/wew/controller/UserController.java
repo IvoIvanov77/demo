@@ -1,4 +1,4 @@
-package com.example.demo.web.controller;
+package com.example.demo.wew.controller;
 
 import com.example.demo.configuration.component.jwt.JwtTokenProvider;
 import com.example.demo.domain.model.AuthenticationRequestModel;
@@ -26,7 +26,8 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 @RequestMapping("/users")
 @PreAuthorize("permitAll()")
-public class UserController {
+public class UserController
+{
 
 
     private final AuthenticationManager authenticationManager;
@@ -37,7 +38,8 @@ public class UserController {
 
 
     @Autowired
-    public UserController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
+    public UserController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService)
+    {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.userService = userService;
@@ -45,8 +47,10 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public UserViewModel registerUser(@RequestBody UserRegisterRequestModel bindingModel){
-        if(bindingModel == null || !this.userService.register(bindingModel)){
+    public UserViewModel registerUser(@RequestBody UserRegisterRequestModel bindingModel)
+    {
+        if (bindingModel == null || !this.userService.register(bindingModel))
+        {
             throw new IllegalArgumentException("Something went wrong.....");
         }
 
@@ -54,8 +58,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody AuthenticationRequestModel requestModel) {
-        try {
+    public ResponseEntity login(@RequestBody AuthenticationRequestModel requestModel)
+    {
+        try
+        {
             String username = requestModel.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestModel.getPassword()));
             String token = jwtTokenProvider.createToken(username,
@@ -64,7 +70,8 @@ public class UserController {
             model.put("username", username);
             model.put("token", token);
             return ok(model);
-        } catch (AuthenticationException e) {
+        } catch (AuthenticationException e)
+        {
             e.printStackTrace();
             System.out.println("error");
             throw new BadCredentialsException("Invalid username/password supplied");

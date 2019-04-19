@@ -6,15 +6,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 
 @Configuration
-public class ApplicationBeanConfiguration {
+public class ApplicationBeanConfiguration
+{
 
     @Bean
-    public SimpleUrlAuthenticationFailureHandler failureHandler(){
+    public SimpleUrlAuthenticationFailureHandler failureHandler()
+    {
         return new SimpleUrlAuthenticationFailureHandler();
     }
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    public BCryptPasswordEncoder bCryptPasswordEncoder()
+    {
         return new BCryptPasswordEncoder();
     }
 }

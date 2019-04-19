@@ -1,6 +1,7 @@
 package com.example.demo.configuration.component.jwt;
 
 
+import com.example.demo.constants.ErrorMessages;
 import com.example.demo.domain.entities.UserRole;
 import com.example.demo.exception.InvalidJwtAuthenticationException;
 import com.example.demo.service.UserService;
@@ -19,9 +20,9 @@ import java.util.Date;
 import java.util.Set;
 
 @Component
-public class JwtTokenProvider {
+public class JwtTokenProvider
+{
 
-    public static final String EXPIRED_OR_INVALID_JWT_TOKEN_MESSAGE = "Expired or invalid JWT token";
 
     @Value("${app.jwtSecret}")
     private String secretKey;
@@ -29,11 +30,15 @@ public class JwtTokenProvider {
     private long validityInMilliseconds;
     @Autowired
     private UserService userService;
+
     @PostConstruct
-    protected void init() {
+    protected void init()
+    {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
-    public String createToken(String username, Set<UserRole> roles) {
+
+    public String createToken(String username, Set<UserRole> roles)
+    {
         Claims claims = Jwts.claims().setSubject(username);
         claims.put("roles", roles);
         Date now = new Date();
@@ -45,29 +50,42 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS256, secretKey)//
                 .compact();
     }
-    public Authentication getAuthentication(String token) {
+
+    public Authentication getAuthentication(String token)
+    {
         UserDetails userDetails = this.userService.loadUserByUsername(getUsername(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
-    public String getUsername(String token) {
+
+    public String getUsername(String token)
+    {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
-    public String resolveToken(HttpServletRequest req) {
+
+    public String resolveToken(HttpServletRequest req)
+    {
         String bearerToken = req.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+        if (bearerToken != null && bearerToken.startsWith("Bearer "))
+        {
             return bearerToken.substring(7, bearerToken.length());
         }
         return null;
     }
-    public boolean validateToken(String token) {
-        try {
+
+    public boolean validateToken(String token)
+    {
+        try
+        {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-            if (claims.getBody().getExpiration().before(new Date())) {
+            if (claims.getBody().getExpiration().before(new Date()))
+            {
                 return false;
             }
             return true;
-        } catch (JwtException | IllegalArgumentException e) {
-            throw new InvalidJwtAuthenticationException(EXPIRED_OR_INVALID_JWT_TOKEN_MESSAGE);
+        } catch (JwtException | IllegalArgumentException e)
+        {
+            e.printStackTrace();
+            throw new InvalidJwtAuthenticationException(ErrorMessages.EXPIRED_OR_INVALID_JWT_TOKEN_MESSAGE);
         }
 
     }
