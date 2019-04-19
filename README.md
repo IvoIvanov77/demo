@@ -192,5 +192,5 @@ Next registerd users takes only "ROLE_USER"
 Test query search query meyhod in EmployeeRepository - [EmployeeRepositoryUnitTests](https://github.com/IvoIvanov77/demo/blob/master/src/test/java/com/example/demo/repository/EmployeeRepositoryUnitTests.java)
 
 #### Integration tests:
-EmployeeController - [EmployeeControllerIntegrationTests](https://github.com/IvoIvanov77/demo/blob/master/src/test/java/com/example/demo/web/controller/EmployeeControllerIntegrationTests.java)
+EmployeeController - [EmployeeControllerIntegrationTests](https://github.com/IvoIvanov77/demo/blob/master/src/test/java/com/example/demo/web/controller/EmployeeControllerIntegrationTests.java)  
 UserController - [UserControllerIntegrationTests](https://github.com/IvoIvanov77/demo/blob/master/src/test/java/com/example/demo/web/controller/UserControllerIntegrationTests.java)
