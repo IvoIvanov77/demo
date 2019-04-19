@@ -1,6 +1,6 @@
 # demo
 Simple spring RESTful Web Service
-Futures
+
 ## Project features list:
 1. Register user:
 - URL - http://localhost:8080/users/register
@@ -193,4 +193,5 @@ Test query search query meyhod in EmployeeRepository - [EmployeeRepositoryUnitTe
 
 #### Integration tests:
 EmployeeController - [EmployeeControllerIntegrationTests](https://github.com/IvoIvanov77/demo/blob/master/src/test/java/com/example/demo/web/controller/EmployeeControllerIntegrationTests.java)  
-UserController - [UserControllerIntegrationTests](https://github.com/IvoIvanov77/demo/blob/master/src/test/java/com/example/demo/web/controller/UserControllerIntegrationTests.java)
+UserController - [UserControllerIntegrationTests](https://github.com/IvoIvanov77/demo/blob/master/src/test/java/com/example/demo/web/controller/UserControllerIntegrationTests.java) 
+## View the project structure in [my rect app](https://ivoivanov77.github.io/repo_explorer/#/repo_explorer/repo/IvoIvanov77/demo)
