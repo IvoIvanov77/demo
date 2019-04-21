@@ -29,7 +29,7 @@ public class EmployeeController
         this.employeeService = employeeService;
     }
 
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = "application/json")   
     public Resources<Resource<Employee>> all()
     {
         String debug = "";

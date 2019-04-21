@@ -34,14 +34,18 @@ public class SeedDatabase
             {
                 for (Employee employee : employees)
                 {
-                    log.info("Preloading " + employeeRepository.save(employee));
+//                    log.info("Preloading " + 
+                employeeRepository.save(employee);
+//                    );
                 }
             }
             if (roleRepository.count() == 0)
             {
                 for (Role role : Role.values())
                 {
-                    log.info("Preloading " + roleRepository.save(new UserRole(role.name())));
+//                    log.info("Preloading " + 
+                roleRepository.save(new UserRole(role.name()));
+//                    );
                 }
             }
 
