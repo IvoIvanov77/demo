@@ -1,4 +1,4 @@
-package com.example.demo.wew.controller;
+package com.example.demo.web.controller;
 
 import com.example.demo.domain.entities.Employee;
 import com.example.demo.domain.model.EmployeeDeleteBindingModel;

@@ -1,4 +1,4 @@
-package com.example.demo.wew.filter;
+package com.example.demo.web.filter;
 
 import com.example.demo.configuration.component.jwt.JwtTokenProvider;
 import org.springframework.security.core.Authentication;

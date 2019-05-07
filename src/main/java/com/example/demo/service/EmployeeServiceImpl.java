@@ -3,9 +3,10 @@ package com.example.demo.service;
 import com.example.demo.constants.ErrorMessages;
 import com.example.demo.domain.model.EmployeesSearchRequestModel;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.wew.controller.EmployeeController;
 import com.example.demo.domain.entities.Employee;
 import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.web.controller.EmployeeController;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
@@ -64,6 +65,7 @@ public class EmployeeServiceImpl implements EmployeeService
     public Employee edit(Employee employee)
     {
         Employee employeeToEdit = this.getById(employee.getId());
+        String debug = "";
 
         employeeToEdit.setName(employee.getName());
         employeeToEdit.setRole(employee.getRole());
